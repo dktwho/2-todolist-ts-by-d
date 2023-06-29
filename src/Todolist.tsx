@@ -9,7 +9,7 @@ export type  TitlePropsType = {
     title: string
     tasks: Array<TasksType>
     // tasks: TasksType[]
-    removedTodo: Function
+    removedTodo: (id: number) => void
 }
 
 export const Todolist = ({title, tasks, removedTodo}: TitlePropsType) => {
