@@ -12,7 +12,7 @@ export type  TitlePropsType = {
     // tasks: TasksType[]
 }
 
-export const Todolist = ({title, tasks}:TitlePropsType ) => {
+export const Todolist = ({title, tasks}: TitlePropsType) => {
     return (
         <div>
             <h3>{title}</h3>
@@ -21,10 +21,11 @@ export const Todolist = ({title, tasks}:TitlePropsType ) => {
                 <button>+</button>
             </div>
             <ul>
-                <li><input type="checkbox" checked={tasks[0].isDone}/><span>{tasks[0].title}</span></li>
-                <li><input type="checkbox" checked={tasks[1].isDone}/><span>{tasks[1].title}</span></li>
-                <li><input type="checkbox" checked={tasks[2].isDone}/><span>{tasks[2].title}</span></li>
-
+                {tasks.map(el => {
+                    return (
+                        <li><input type="checkbox" checked={el.isDone}/><span>{el.title}</span></li>
+                    )
+                })}
             </ul>
             <div>
                 <button>All</button>
