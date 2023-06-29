@@ -9,9 +9,10 @@ export type  TitlePropsType = {
     title: string
     tasks: Array<TasksType>
     // tasks: TasksType[]
+    removedTodo: Function
 }
 
-export const Todolist = ({title, tasks}: TitlePropsType) => {
+export const Todolist = ({title, tasks, removedTodo}: TitlePropsType) => {
     return (
         <div>
             <h3>{title}</h3>
@@ -25,7 +26,7 @@ export const Todolist = ({title, tasks}: TitlePropsType) => {
                         <li key={el.id}>
                             <input type="checkbox" checked={el.isDone} readOnly/>
                             <span>{el.title}</span>
-                            <button onClick={() => console.log(el.id)}>X</button>
+                            <button onClick={() => removedTodo(el.id) }>X</button>
                         </li>
                     )
                 })}
