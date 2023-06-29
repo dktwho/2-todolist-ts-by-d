@@ -1,6 +1,5 @@
 import React from "react";
 
-
 export type TasksType = {
     id: number;
     title: string;
@@ -23,7 +22,11 @@ export const Todolist = ({title, tasks}: TitlePropsType) => {
             <ul>
                 {tasks.map(el => {
                     return (
-                        <li key={el.id}><input type="checkbox" checked={el.isDone} readOnly/><span>{el.title}</span></li>
+                        <li key={el.id}>
+                            <input type="checkbox" checked={el.isDone} readOnly/>
+                            <span>{el.title}</span>
+                            <button onClick={() => console.log(el.id)}>X</button>
+                        </li>
                     )
                 })}
             </ul>
