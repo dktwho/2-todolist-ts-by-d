@@ -6,6 +6,7 @@ export type TasksType = {
     title: string;
     isDone: boolean;
 }
+
 export type  TitlePropsType = {
     title: string
     tasks: Array<TasksType>
@@ -13,7 +14,6 @@ export type  TitlePropsType = {
     removedTodo: (id: string) => void;
     filterTodos: (value: FilterValueType) => void
     addTodo: (value: string) => void
-
 }
 export const Todolist = ({title, tasks, removedTodo, filterTodos, addTodo}: TitlePropsType) => {
     const [value, setValue] = useState('')
@@ -21,14 +21,12 @@ export const Todolist = ({title, tasks, removedTodo, filterTodos, addTodo}: Titl
     const changeValue = (e: ChangeEvent<HTMLInputElement>) => {
         setValue(e.currentTarget.value)
     }
-
     const onKeyPressHandler = (e: KeyboardEvent<HTMLInputElement>) => {
         if (e.code === 'Enter') {
             addTodo(value);
             setValue('')
         }
     }
-
     const onClickAddtask = () => {
         addTodo(value);
         setValue('')
