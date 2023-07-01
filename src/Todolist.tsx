@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import {FilterValueType} from "./App";
 
 export type TasksType = {
@@ -12,17 +12,22 @@ export type  TitlePropsType = {
     // tasks: TasksType[]
     removedTodo: (id: string) => void;
     filterTodos: (value: FilterValueType) => void
-    addTodo: () => void
+    addTodo: (value: any) => void
 
 }
 
 export const Todolist = ({title, tasks, removedTodo, filterTodos, addTodo}: TitlePropsType) => {
+    const [value, setValue] = useState('')
+
+    const changeValue = (e: any) => {
+        setValue(e.currentTarget.value)
+    }
     return (
         <div>
             <h3>{title}</h3>
             <div>
-                <input type="text"/>
-                <button onClick={addTodo}>+</button>
+                <input type="text" value={value} onChange={changeValue}  />
+                <button onClick={() => addTodo(value)}>+</button>
             </div>
             <ul>
                 {tasks.map(el => {

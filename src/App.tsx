@@ -4,7 +4,6 @@ import {TasksType, Todolist} from "./Todolist";
 import {v4} from 'uuid';
 
 
-
 export type FilterValueType = 'all' | 'active' | 'completed'
 
 function App() {
@@ -17,11 +16,11 @@ function App() {
 
     let [task, setTask] = useState<Array<TasksType>>(tasks1)
     let [filter, setFilter] = useState<FilterValueType>('all')
-    let [value, setValue] = useState('')
 
-    const addTodo = () => {
-        let newTask = {id: v4(), title: 'new task', isDone: false}
-        setTask([...task, newTask])
+
+    const addTodo = (value: any) => {
+        let newTask = {id: v4(), title: value, isDone: false}
+        setTask([newTask, ...task])
     }
 
     const removedTodo = (id: string) => {
