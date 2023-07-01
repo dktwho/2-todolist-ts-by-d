@@ -11,17 +11,18 @@ export type  TitlePropsType = {
     tasks: Array<TasksType>
     // tasks: TasksType[]
     removedTodo: (id: string) => void;
-    filterTodos: (value: FilterValueType ) => void
+    filterTodos: (value: FilterValueType) => void
+    addTodo: () => void
 
 }
 
-export const Todolist = ({title, tasks, removedTodo, filterTodos}: TitlePropsType) => {
+export const Todolist = ({title, tasks, removedTodo, filterTodos, addTodo}: TitlePropsType) => {
     return (
         <div>
             <h3>{title}</h3>
             <div>
                 <input type="text"/>
-                <button>+</button>
+                <button onClick={addTodo}>+</button>
             </div>
             <ul>
                 {tasks.map(el => {
