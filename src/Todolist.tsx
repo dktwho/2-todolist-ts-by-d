@@ -1,4 +1,4 @@
-import React, {FormEvent, useState} from "react";
+import React, {ChangeEvent, KeyboardEvent, useState} from "react";
 import {FilterValueType} from "./App";
 
 export type TasksType = {
@@ -15,28 +15,34 @@ export type  TitlePropsType = {
     addTodo: (value: string) => void
 
 }
-
 export const Todolist = ({title, tasks, removedTodo, filterTodos, addTodo}: TitlePropsType) => {
     const [value, setValue] = useState('')
 
-    const changeValue = (e: FormEvent<HTMLInputElement>) => {
+    const changeValue = (e: ChangeEvent<HTMLInputElement>) => {
         setValue(e.currentTarget.value)
     }
+
+    const onKeyPressHandler = (e: KeyboardEvent<HTMLInputElement>) => {
+        if (e.code === 'Enter') {
+            addTodo(value);
+            setValue('')
+        }
+    }
+
+    const onClickAddtask = () => {
+        addTodo(value);
+        setValue('')
+    }
+
+    const AllClickHandler = () => filterTodos('all')
+    const ActiveClickHandler = () => filterTodos('active')
+    const ComplitedClickHandler = () => filterTodos('completed')
     return (
         <div>
             <h3>{title}</h3>
             <div>
-                <input type="text" value={value} onChange={changeValue} onKeyPress={(e) => {
-                    if(e.code === 'Enter') {
-                        addTodo(value);
-                        setValue('')
-                    }
-                }}/>
-                <button onClick={() => {
-                    addTodo(value);
-                    setValue('')
-                }
-                }>+
+                <input type="text" value={value} onChange={changeValue} onKeyPress={onKeyPressHandler}/>
+                <button onClick={onClickAddtask}>+
                 </button>
             </div>
             <ul>
@@ -51,9 +57,9 @@ export const Todolist = ({title, tasks, removedTodo, filterTodos, addTodo}: Titl
                 })}
             </ul>
             <div>
-                <button onClick={() => filterTodos('all')}>All</button>
-                <button onClick={() => filterTodos('active')}>Active</button>
-                <button onClick={() => filterTodos('completed')}>Completed</button>
+                <button onClick={AllClickHandler}>All</button>
+                <button onClick={ActiveClickHandler}>Active</button>
+                <button onClick={ComplitedClickHandler}>Completed</button>
             </div>
         </div>
     )
