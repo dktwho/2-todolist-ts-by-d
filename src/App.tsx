@@ -18,7 +18,7 @@ function App() {
     let [filter, setFilter] = useState<FilterValueType>('all')
 
 
-    const addTodo = (value: any) => {
+    const addTodo = (value: string) => {
         let newTask = {id: v4(), title: value, isDone: false}
         setTask([newTask, ...task])
     }
@@ -29,6 +29,7 @@ function App() {
     let taskForTodoList = task;
     const filterTodos = (value: FilterValueType) => {
         setFilter(value)
+
     }
 
     if (filter === 'completed') {

@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {FormEvent, useState} from "react";
 import {FilterValueType} from "./App";
 
 export type TasksType = {
@@ -12,14 +12,14 @@ export type  TitlePropsType = {
     // tasks: TasksType[]
     removedTodo: (id: string) => void;
     filterTodos: (value: FilterValueType) => void
-    addTodo: (value: any) => void
+    addTodo: (value: string) => void
 
 }
 
 export const Todolist = ({title, tasks, removedTodo, filterTodos, addTodo}: TitlePropsType) => {
     const [value, setValue] = useState('')
 
-    const changeValue = (e: any) => {
+    const changeValue = (e: FormEvent<HTMLInputElement>) => {
         setValue(e.currentTarget.value)
     }
     return (
@@ -27,7 +27,11 @@ export const Todolist = ({title, tasks, removedTodo, filterTodos, addTodo}: Titl
             <h3>{title}</h3>
             <div>
                 <input type="text" value={value} onChange={changeValue}  />
-                <button onClick={() => addTodo(value)}>+</button>
+                <button onClick={() => {
+                    addTodo(value);
+                    setValue('')
+                }
+                }>+</button>
             </div>
             <ul>
                 {tasks.map(el => {
