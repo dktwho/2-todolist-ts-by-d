@@ -2,7 +2,7 @@ import React from "react";
 import {FilterValueType} from "./App";
 
 export type TasksType = {
-    id: number;
+    id: string;
     title: string;
     isDone: boolean;
 }
@@ -10,7 +10,7 @@ export type  TitlePropsType = {
     title: string
     tasks: Array<TasksType>
     // tasks: TasksType[]
-    removedTodo: (id: number) => void;
+    removedTodo: (id: string) => void;
     filterTodos: (value: FilterValueType ) => void
 
 }
