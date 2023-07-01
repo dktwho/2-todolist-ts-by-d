@@ -47,13 +47,17 @@ export const Todolist = ({title, tasks, removedTodo, filterTodos, addTodo}: Titl
             </div>
             <ul>
                 {tasks.map(el => {
+                    const onRemoveHandler = () => {
+                        removedTodo(el.id)
+                    }
                     return (
                         <li key={el.id}>
                             <input type="checkbox" checked={el.isDone} readOnly/>
                             <span>{el.title}</span>
-                            <button onClick={() => removedTodo(el.id)}>X</button>
+                            <button onClick={onRemoveHandler}>X</button>
                         </li>
                     )
+
                 })}
             </ul>
             <div>
