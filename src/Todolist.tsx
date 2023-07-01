@@ -26,12 +26,18 @@ export const Todolist = ({title, tasks, removedTodo, filterTodos, addTodo}: Titl
         <div>
             <h3>{title}</h3>
             <div>
-                <input type="text" value={value} onChange={changeValue}  />
+                <input type="text" value={value} onChange={changeValue} onKeyPress={(e) => {
+                    if(e.code === 'Enter') {
+                        addTodo(value);
+                        setValue('')
+                    }
+                }}/>
                 <button onClick={() => {
                     addTodo(value);
                     setValue('')
                 }
-                }>+</button>
+                }>+
+                </button>
             </div>
             <ul>
                 {tasks.map(el => {
