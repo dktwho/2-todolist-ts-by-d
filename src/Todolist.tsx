@@ -29,6 +29,9 @@ export const Todolist = ({title, tasks, removedTodo, filterTodos, addTodo, chang
         }
     }
     const onClickAddtask = () => {
+        if(value.trim() === '') {
+            return
+        }
         addTodo(value);
         setValue('')
     }
