@@ -14,8 +14,9 @@ export type  TitlePropsType = {
     removedTodo: (id: string) => void;
     filterTodos: (value: FilterValueType) => void
     addTodo: (value: string) => void
+    changeStatusHandler: (taskId: string, isDone: boolean) => void
 }
-export const Todolist = ({title, tasks, removedTodo, filterTodos, addTodo}: TitlePropsType) => {
+export const Todolist = ({title, tasks, removedTodo, filterTodos, addTodo, changeStatusHandler}: TitlePropsType) => {
     const [value, setValue] = useState('')
 
     const changeValue = (e: ChangeEvent<HTMLInputElement>) => {
@@ -32,9 +33,10 @@ export const Todolist = ({title, tasks, removedTodo, filterTodos, addTodo}: Titl
         setValue('')
     }
 
+
     const AllClickHandler = () => filterTodos('all')
     const ActiveClickHandler = () => filterTodos('active')
-    const ComplitedClickHandler = () => filterTodos('completed')
+    const CompletedClickHandler = () => filterTodos('completed')
     return (
         <div>
             <h3>{title}</h3>
@@ -48,9 +50,15 @@ export const Todolist = ({title, tasks, removedTodo, filterTodos, addTodo}: Titl
                     const onRemoveHandler = () => {
                         removedTodo(el.id)
                     }
+
+                    const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+                        changeStatusHandler(el.id, e.currentTarget.checked)
+
+                    }
+
                     return (
                         <li key={el.id}>
-                            <input type="checkbox" checked={el.isDone} readOnly/>
+                            <input onChange={onChangeHandler} type="checkbox" checked={el.isDone} readOnly/>
                             <span>{el.title}</span>
                             <button onClick={onRemoveHandler}>X</button>
                         </li>
@@ -61,7 +69,7 @@ export const Todolist = ({title, tasks, removedTodo, filterTodos, addTodo}: Titl
             <div>
                 <button onClick={AllClickHandler}>All</button>
                 <button onClick={ActiveClickHandler}>Active</button>
-                <button onClick={ComplitedClickHandler}>Completed</button>
+                <button onClick={CompletedClickHandler}>Completed</button>
             </div>
         </div>
     )

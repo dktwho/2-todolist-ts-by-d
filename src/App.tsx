@@ -14,27 +14,35 @@ function App() {
         {id: v4(), title: 'JS', isDone: true},
     ]
 
-    let [task, setTask] = useState<Array<TasksType>>(tasks1)
+    let [tasks, setTasks] = useState<Array<TasksType>>(tasks1)
     let [filter, setFilter] = useState<FilterValueType>('all')
 
     const addTodo = (value: string) => {
         let newTask = {id: v4(), title: value, isDone: false}
-        setTask([newTask, ...task])
+        setTasks([newTask, ...tasks])
     }
 
     const removedTodo = (id: string) => {
-        setTask(task.filter(el => el.id !== id))
+        setTasks(tasks.filter(el => el.id !== id))
     }
-    let taskForTodoList = task;
+    let taskForTodoList = tasks;
     const filterTodos = (value: FilterValueType) => {
         setFilter(value)
     }
 
     if (filter === 'completed') {
-        taskForTodoList = task.filter(t => t.isDone === true)
+        taskForTodoList = tasks.filter(t => t.isDone === true)
     }
     if (filter === 'active') {
-        taskForTodoList = task.filter(t => t.isDone === false)
+        taskForTodoList = tasks.filter(t => t.isDone === false)
+    }
+
+    const changeStatusHandler = (taskId: string, isDone: boolean) => {
+        let task = tasks.find(t => t.id === taskId)
+        if (task) {
+            task.isDone = isDone
+        }
+        setTasks([...tasks,  ])
     }
 
     return (
@@ -45,6 +53,7 @@ function App() {
                 removedTodo={removedTodo}
                 filterTodos={filterTodos}
                 addTodo={addTodo}
+                changeStatusHandler={changeStatusHandler}
             />
         </div>
     );
