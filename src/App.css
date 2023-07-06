@@ -1,16 +1,20 @@
 .App {
-  padding: 30px;
-  display: flex;
+    padding: 30px;
+    display: flex;
 }
 
 .App > div {
-  margin-right: 10px;
+    margin-right: 10px;
 }
 
 .error {
-  border: 1px solid red;
+    border: 1px solid red;
 }
 
 .error-message {
-  color: red;
+    color: red;
+}
+
+.active-filter {
+    background-color: mediumaquamarine;
 }

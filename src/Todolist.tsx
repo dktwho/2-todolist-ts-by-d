@@ -15,8 +15,9 @@ export type  TitlePropsType = {
     filterTodos: (value: FilterValueType) => void
     addTodo: (value: string) => void
     changeStatusHandler: (taskId: string, isDone: boolean) => void
+    filter: FilterValueType
 }
-export const Todolist = ({title, tasks, removedTodo, filterTodos, addTodo, changeStatusHandler}: TitlePropsType) => {
+export const Todolist = ({title, tasks, removedTodo, filterTodos, addTodo, changeStatusHandler, filter}: TitlePropsType) => {
     const [value, setValue] = useState('')
     const [error, setError] = useState<string | null>(null)
 
@@ -74,9 +75,9 @@ export const Todolist = ({title, tasks, removedTodo, filterTodos, addTodo, chang
                 })}
             </ul>
             <div>
-                <button onClick={AllClickHandler}>All</button>
-                <button onClick={ActiveClickHandler}>Active</button>
-                <button onClick={CompletedClickHandler}>Completed</button>
+                <button className={filter === 'all' ? 'active-filter': ''} onClick={AllClickHandler}>All</button>
+                <button className={filter === 'active' ? 'active-filter': ''} onClick={ActiveClickHandler}>Active</button>
+                <button className={filter === 'completed' ? 'active-filter': ''} onClick={CompletedClickHandler}>Completed</button>
             </div>
         </div>
     )

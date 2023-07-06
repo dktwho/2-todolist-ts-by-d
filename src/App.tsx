@@ -54,6 +54,7 @@ function App() {
                 filterTodos={filterTodos}
                 addTodo={addTodo}
                 changeStatusHandler={changeStatusHandler}
+                filter={filter}
             />
         </div>
     );
