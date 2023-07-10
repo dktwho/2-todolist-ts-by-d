@@ -12,7 +12,6 @@ export type TodoListType = {
     filter: FilterValueType
 }
 
-
 function App() {
 
 
@@ -48,6 +47,13 @@ function App() {
             todolist.filter = value
             setTodoLists([...todoLists])
         }
+    }
+
+    const removeTodoList = (todolistId: string) => {
+        let filteredTodolist = todoLists.filter(tl => tl.id !== todolistId)
+        setTodoLists(filteredTodolist)
+        delete tasksObj[todolistId]
+        setTasks({...tasksObj})
     }
 
     let todoListId1 = v4()
@@ -96,6 +102,7 @@ function App() {
                         addTodo={addTodo}
                         changeStatusHandler={changeStatusHandler}
                         filter={todolist.filter}
+                        removeTodoList={removeTodoList}
                     />
                 )
             })}
