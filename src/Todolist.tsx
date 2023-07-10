@@ -12,10 +12,10 @@ export type  TitlePropsType = {
     id: string
     tasks: Array<TasksType>
     // tasks: TasksType[]
-    removedTodo: (id: string) => void;
+    removedTodo: (id: string, todolistId: string) => void;
     filterTodos: (value: FilterValueType, todolistId: string) => void
-    addTodo: (value: string) => void
-    changeStatusHandler: (taskId: string, isDone: boolean) => void
+    addTodo: (value: string, todolistId: string) => void
+    changeStatusHandler: (taskId: string, isDone: boolean, todolistId: string) => void
     filter: FilterValueType
 }
 export const Todolist = ({title, tasks, removedTodo, filterTodos, addTodo, changeStatusHandler, filter, id}: TitlePropsType) => {
@@ -28,7 +28,7 @@ export const Todolist = ({title, tasks, removedTodo, filterTodos, addTodo, chang
     const onKeyPressHandler = (e: KeyboardEvent<HTMLInputElement>) => {
         setError(null)
         if (e.code === 'Enter') {
-            addTodo(value);
+            addTodo(value, id );
             setValue('')
         }
     }
@@ -37,7 +37,7 @@ export const Todolist = ({title, tasks, removedTodo, filterTodos, addTodo, chang
             setError('Value is required')
             return
         }
-        addTodo(value.trim());
+        addTodo(value.trim(), id);
         setValue('')
     }
 
@@ -57,11 +57,11 @@ export const Todolist = ({title, tasks, removedTodo, filterTodos, addTodo, chang
             <ul>
                 {tasks.map(el => {
                     const onRemoveHandler = () => {
-                        removedTodo(el.id)
+                        removedTodo(el.id, id)
                     }
 
                     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-                        changeStatusHandler(el.id, e.currentTarget.checked)
+                        changeStatusHandler(el.id, e.currentTarget.checked, id)
 
                     }
 
