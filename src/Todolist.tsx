@@ -9,15 +9,16 @@ export type TasksType = {
 
 export type  TitlePropsType = {
     title: string
+    id: string
     tasks: Array<TasksType>
     // tasks: TasksType[]
     removedTodo: (id: string) => void;
-    filterTodos: (value: FilterValueType) => void
+    filterTodos: (value: FilterValueType, todolistId: string) => void
     addTodo: (value: string) => void
     changeStatusHandler: (taskId: string, isDone: boolean) => void
     filter: FilterValueType
 }
-export const Todolist = ({title, tasks, removedTodo, filterTodos, addTodo, changeStatusHandler, filter}: TitlePropsType) => {
+export const Todolist = ({title, tasks, removedTodo, filterTodos, addTodo, changeStatusHandler, filter, id}: TitlePropsType) => {
     const [value, setValue] = useState('')
     const [error, setError] = useState<string | null>(null)
 
@@ -41,9 +42,9 @@ export const Todolist = ({title, tasks, removedTodo, filterTodos, addTodo, chang
     }
 
 
-    const AllClickHandler = () => filterTodos('all')
-    const ActiveClickHandler = () => filterTodos('active')
-    const CompletedClickHandler = () => filterTodos('completed')
+    const AllClickHandler = () => filterTodos('all', id)
+    const ActiveClickHandler = () => filterTodos('active', id)
+    const CompletedClickHandler = () => filterTodos('completed', id)
     return (
         <div>
             <h3>{title}</h3>
