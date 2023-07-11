@@ -19,7 +19,7 @@ export type  TitlePropsType = {
     filter: FilterValueType
     removeTodoList: (todolistId: string) => void
 }
-export const Todolist = ({title, tasks, removedTodo, filterTodos, addTodo, changeStatusHandler, filter, id}: TitlePropsType) => {
+export const Todolist = ({title, tasks, removedTodo, filterTodos, addTodo, changeStatusHandler, filter, id, removeTodoList}: TitlePropsType) => {
     const [value, setValue] = useState('')
     const [error, setError] = useState<string | null>(null)
 
@@ -31,6 +31,7 @@ export const Todolist = ({title, tasks, removedTodo, filterTodos, addTodo, chang
         if (e.code === 'Enter') {
             addTodo(value, id );
             setValue('')
+            AllClickHandler()
         }
     }
     const onClickAddTask = () => {
@@ -40,18 +41,19 @@ export const Todolist = ({title, tasks, removedTodo, filterTodos, addTodo, chang
         }
         addTodo(value.trim(), id);
         setValue('')
+        AllClickHandler()
     }
 
 
     const AllClickHandler = () => filterTodos('all', id)
     const ActiveClickHandler = () => filterTodos('active', id)
     const CompletedClickHandler = () => filterTodos('completed', id)
-    const removeTodoList = () => {
+    const removeTodoListHandler = () => {
         removeTodoList(id)
     }
     return (
         <div>
-            <h3>{title} <button onClick={removeTodoList}>x</button></h3>
+            <h3>{title} <button onClick={removeTodoListHandler}>x</button></h3>
             <div>
                 <input type="text" value={value} onChange={changeValue} onKeyPress={onKeyPressHandler} className={error ? 'error' : '' } />
                 <button onClick={onClickAddTask}>+
