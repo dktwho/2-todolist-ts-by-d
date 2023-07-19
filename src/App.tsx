@@ -14,6 +14,27 @@ export type TodoListType = {
 
 function App() {
 
+    let todoListId1 = v4()
+    let todoListId2 = v4()
+
+    let [todoLists, setTodoLists] = useState<TodoListType[]>([
+        {id: todoListId1, title: 'What to learn', filter: 'active'},
+        {id: todoListId2, title: 'What to buy', filter: 'completed'},
+    ])
+
+    let [tasksObj, setTasks] = useState({
+        [todoListId1]: [
+            {id: v4(), title: 'HTML', isDone: true},
+            {id: v4(), title: 'CSS', isDone: false},
+            {id: v4(), title: 'JS', isDone: true}
+        ],
+        [todoListId2]: [
+            {id: v4(), title: 'Buy tonic', isDone: true},
+            {id: v4(), title: 'Buy bread', isDone: false},
+            {id: v4(), title: 'Watch movie', isDone: false}
+        ]
+    })
+
 
     // let [tasks, setTasks] = useState<Array<TasksType>>(tasks1)
 
@@ -55,27 +76,6 @@ function App() {
         delete tasksObj[todolistId]
         setTasks({...tasksObj})
     }
-
-    let todoListId1 = v4()
-    let todoListId2 = v4()
-
-    let [todoLists, setTodoLists] = useState<TodoListType[]>([
-        {id: todoListId1, title: 'What to learn', filter: 'active'},
-        {id: todoListId2, title: 'What to buy', filter: 'completed'},
-    ])
-
-    let [tasksObj, setTasks] = useState({
-        [todoListId1]: [
-            {id: v4(), title: 'HTML', isDone: true},
-            {id: v4(), title: 'CSS', isDone: false},
-            {id: v4(), title: 'JS', isDone: true}
-        ],
-        [todoListId2]: [
-            {id: v4(), title: 'Buy tonic', isDone: true},
-            {id: v4(), title: 'Buy bread', isDone: false},
-            {id: v4(), title: 'Watch movie', isDone: false}
-        ]
-    })
 
 
     return (
