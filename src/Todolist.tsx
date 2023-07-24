@@ -1,5 +1,6 @@
-import React, {ChangeEvent, KeyboardEvent, useState} from "react";
+import React, {ChangeEvent, useState} from "react";
 import {FilterValueType} from "./App";
+import {AddItemForm} from "./AddItemForm";
 
 export type TasksType = {
     id: string;
@@ -20,30 +21,6 @@ export type  TitlePropsType = {
     removeTodoList: (todolistId: string) => void
 }
 export const Todolist = ({title, tasks, removedTodo, filterTodos, addTodo, changeStatusHandler, filter, id, removeTodoList}: TitlePropsType) => {
-    const [value, setValue] = useState('')
-    const [error, setError] = useState<string | null>(null)
-
-    const changeValue = (e: ChangeEvent<HTMLInputElement>) => {
-        setValue(e.currentTarget.value)
-    }
-    const onKeyPressHandler = (e: KeyboardEvent<HTMLInputElement>) => {
-        setError(null)
-        if (e.code === 'Enter') {
-            addTodo(value, id );
-            setValue('')
-            AllClickHandler()
-        }
-    }
-    const onClickAddTask = () => {
-        if(value.trim() === '') {
-            setError('Value is required')
-            return
-        }
-        addTodo(value.trim(), id);
-        setValue('')
-        AllClickHandler()
-    }
-
 
     const AllClickHandler = () => filterTodos('all', id)
     const ActiveClickHandler = () => filterTodos('active', id)
@@ -54,12 +31,7 @@ export const Todolist = ({title, tasks, removedTodo, filterTodos, addTodo, chang
     return (
         <div>
             <h3>{title} <button onClick={removeTodoListHandler}>x</button></h3>
-            <div>
-                <input type="text" value={value} onChange={changeValue} onKeyPress={onKeyPressHandler} className={error ? 'error' : '' } />
-                <button onClick={onClickAddTask}>+
-                </button>
-                { error && <div className='error-message'>{error}</div>}
-            </div>
+            <AddItemForm addTodo={addTodo} id={id}/>
             <ul>
                 {tasks.map(el => {
                     const onRemoveHandler = () => {
@@ -68,7 +40,6 @@ export const Todolist = ({title, tasks, removedTodo, filterTodos, addTodo, chang
 
                     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
                         changeStatusHandler(el.id, e.currentTarget.checked, id)
-
                     }
 
                     return (
@@ -89,3 +60,4 @@ export const Todolist = ({title, tasks, removedTodo, filterTodos, addTodo, chang
         </div>
     )
 }
+

@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import './App.css';
-import {TasksType, Todolist} from "./Todolist";
+import { Todolist} from "./Todolist";
 import {v4} from 'uuid';
 
 
@@ -80,6 +80,7 @@ function App() {
 
     return (
         <div className="App">
+            <input type="text"/> <button>x</button>
             {todoLists.map(todolist => {
 
                 let taskForTodoList = tasksObj[todolist.id];
