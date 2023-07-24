@@ -53,7 +53,6 @@ export const Todolist = ({title, tasks, removedTodo, filterTodos, addItem, chang
                             <button onClick={onRemoveHandler}>X</button>
                         </li>
                     )
-
                 })}
             </ul>
             <div>
