@@ -1,8 +1,7 @@
 import React, {ChangeEvent, KeyboardEvent, useState} from "react";
 
 type AddItemFormPropsType = {
-    addTodo: (value: string, todolistId: string) => void
-    id: string
+    addItem: (value: string) => void
 }
 export const AddItemForm = (props: AddItemFormPropsType) => {
     const [value, setValue] = useState('')
@@ -17,14 +16,14 @@ export const AddItemForm = (props: AddItemFormPropsType) => {
             setError('Value is required')
             return
         }
-        props.addTodo(value.trim(), props.id);
+        props.addItem(value.trim());
         setValue('')
     }
 
     const onKeyPressHandler = (e: KeyboardEvent<HTMLInputElement>) => {
         setError(null)
         if (e.code === 'Enter') {
-            props.addTodo(value, props.id);
+            props.addItem(value);
             setValue('')
         }
     }

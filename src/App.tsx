@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import './App.css';
 import { Todolist} from "./Todolist";
 import {v4} from 'uuid';
+import {AddItemForm} from "./AddItemForm";
 
 
 export type FilterValueType = 'all' | 'active' | 'completed'
@@ -18,8 +19,8 @@ function App() {
     let todoListId2 = v4()
 
     let [todoLists, setTodoLists] = useState<TodoListType[]>([
-        {id: todoListId1, title: 'What to learn', filter: 'active'},
-        {id: todoListId2, title: 'What to buy', filter: 'completed'},
+        {id: todoListId1, title: 'What to learn', filter: 'all'},
+        {id: todoListId2, title: 'What to buy', filter: 'all'},
     ])
 
     let [tasksObj, setTasks] = useState({
@@ -36,9 +37,8 @@ function App() {
     })
 
 
-    // let [tasks, setTasks] = useState<Array<TasksType>>(tasks1)
 
-    const addTodo = (value: string, todolistId: string) => {
+    const addItem = (value: string, todolistId: string) => {
         let task = {id: v4(), title: value, isDone: false}
         let tasks = tasksObj[todolistId]
         let newTasks = [task, ...tasks]
@@ -80,7 +80,7 @@ function App() {
 
     return (
         <div className="App">
-            <input type="text"/> <button>x</button>
+         <AddItemForm addItem={() => {}} />
             {todoLists.map(todolist => {
 
                 let taskForTodoList = tasksObj[todolist.id];
@@ -100,7 +100,7 @@ function App() {
                         tasks={taskForTodoList}
                         removedTodo={removedTodo}
                         filterTodos={filterTodos}
-                        addTodo={addTodo}
+                        addItem={addItem}
                         changeStatusHandler={changeStatusHandler}
                         filter={todolist.filter}
                         removeTodoList={removeTodoList}

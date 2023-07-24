@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useState} from "react";
+import React, {ChangeEvent} from "react";
 import {FilterValueType} from "./App";
 import {AddItemForm} from "./AddItemForm";
 
@@ -15,12 +15,16 @@ export type  TitlePropsType = {
     // tasks: TasksType[]
     removedTodo: (id: string, todolistId: string) => void;
     filterTodos: (value: FilterValueType, todolistId: string) => void
-    addTodo: (value: string, todolistId: string) => void
+    addItem: (value: string, todolistId: string) => void
     changeStatusHandler: (taskId: string, isDone: boolean, todolistId: string) => void
     filter: FilterValueType
     removeTodoList: (todolistId: string) => void
 }
-export const Todolist = ({title, tasks, removedTodo, filterTodos, addTodo, changeStatusHandler, filter, id, removeTodoList}: TitlePropsType) => {
+export const Todolist = ({title, tasks, removedTodo, filterTodos, addItem, changeStatusHandler, filter, id, removeTodoList}: TitlePropsType) => {
+
+    const addTask = (title: string) => {
+        addItem(title, id)
+    }
 
     const AllClickHandler = () => filterTodos('all', id)
     const ActiveClickHandler = () => filterTodos('active', id)
@@ -31,7 +35,7 @@ export const Todolist = ({title, tasks, removedTodo, filterTodos, addTodo, chang
     return (
         <div>
             <h3>{title} <button onClick={removeTodoListHandler}>x</button></h3>
-            <AddItemForm addTodo={addTodo} id={id}/>
+            <AddItemForm addItem={addTask}/>
             <ul>
                 {tasks.map(el => {
                     const onRemoveHandler = () => {
