@@ -40,8 +40,6 @@ function App() {
         ]
     })
 
-
-
     const addItem = (value: string, todolistId: string) => {
         let task = {id: v4(), title: value, isDone: false}
         let tasks = tasksObj[todolistId]
