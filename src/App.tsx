@@ -92,14 +92,14 @@ function App() {
 
     const changeTodoListTitle = (id: string, newTitle: string) => {
         const todolist = todoLists.find(tl => tl.id === id)
-        if(todolist) {
-            todolist.title =  newTitle
+        if (todolist) {
+            todolist.title = newTitle
             setTodoLists([...todoLists])
         }
     }
 
     const addTodoList = (title: string) => {
-        let todolist:TodoListType  = {id: v4(), filter: 'all', title: title}
+        let todolist: TodoListType = {id: v4(), filter: 'all', title: title}
         setTodoLists([todolist, ...todoLists])
         setTasks({...tasksObj, [todolist.id]: []})
     }
@@ -107,7 +107,7 @@ function App() {
 
     return (
         <div className="App">
-         <AddItemForm addItem={addTodoList} />
+            <AddItemForm addItem={addTodoList}/>
             {todoLists.map(todolist => {
 
                 let taskForTodoList = tasksObj[todolist.id];

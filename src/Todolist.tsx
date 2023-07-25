@@ -21,7 +21,7 @@ export type  TitlePropsType = {
     changeTitleHandler: (taskId: string, newTitle: string, id: string) => void
     filter: FilterValueType
     removeTodoList: (todolistId: string) => void
-    changeTodoListTitle: (todolistId: string , newTitle: string) => void
+    changeTodoListTitle: (todolistId: string, newTitle: string) => void
 
 }
 export const Todolist = ({
@@ -55,7 +55,7 @@ export const Todolist = ({
     return (
         <div>
             <h3>
-                <EditableSpan  title={title} onChange={changeTodoListTitle2}/>
+                <EditableSpan title={title} onChange={changeTodoListTitle2}/>
                 <button onClick={removeTodoListHandler}>x</button>
             </h3>
             <AddItemForm addItem={addTask}/>
