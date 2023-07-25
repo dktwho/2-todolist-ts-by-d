@@ -51,7 +51,7 @@ export const Todolist = ({title, tasks, removedTodo, filterTodos, addItem, chang
                         <li key={el.id} className={el.isDone ? 'is-done': ''}>
                             <input onChange={onChangeHandler} type="checkbox" checked={el.isDone} readOnly/>
                             {/*<span>{el.title}</span>*/}
-                            <EditableSpan title={el.title} />
+                            <EditableSpan title={el.title}  />
                             <button onClick={onRemoveHandler}>X</button>
                         </li>
                     )
