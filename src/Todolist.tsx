@@ -63,7 +63,6 @@ export const Todolist = ({
                 <IconButton onClick={removeTodoListHandler} size="large">
                     <Delete fontSize={"inherit"}/>
                 </IconButton>
-                {/*<button onClick={removeTodoListHandler}>x</button>*/}
             </h3>
             <AddItemForm addItem={addTask}/>
             <ul>
@@ -84,8 +83,8 @@ export const Todolist = ({
                     return (
                         <div key={el.id} className={el.isDone ? 'is-done' : ''}>
                             <Checkbox size="small"
-                                checked={el.isDone}
-                                onChange={onChangeStatus}
+                                      checked={el.isDone}
+                                      onChange={onChangeStatus}
                             />
 
                             {/*<span>{el.title}</span>*/}
