@@ -3,6 +3,10 @@ import {FilterValueType} from "./App";
 import {AddItemForm} from "./AddItemForm";
 import {EditableSpan} from "./EditableSpan";
 
+import { Delete } from "@mui/icons-material";
+import { IconButton } from "@mui/material";
+
+
 export type TasksType = {
     id: string;
     title: string;
@@ -79,7 +83,10 @@ export const Todolist = ({
                             <input onChange={onChangeStatus} type="checkbox" checked={el.isDone} readOnly/>
                             {/*<span>{el.title}</span>*/}
                             <EditableSpan title={el.title} onChange={onChangeTitle}/>
-                            <button onClick={onRemoveHandler}>X</button>
+                                <IconButton onClick={onRemoveHandler} >
+                                    <Delete />
+                                </IconButton>
+
                         </li>
                     )
                 })}
