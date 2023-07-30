@@ -3,6 +3,8 @@ import './App.css';
 import {TasksType, Todolist} from "./Todolist";
 import {v4} from 'uuid';
 import {AddItemForm} from "./AddItemForm";
+import {AppBar, Button, Container, IconButton, Toolbar, Typography} from '@mui/material';
+import {Menu} from '@mui/icons-material';
 
 
 export type FilterValueType = 'all' | 'active' | 'completed'
@@ -107,35 +109,56 @@ function App() {
 
     return (
         <div className="App">
-            <AddItemForm addItem={addTodoList}/>
-            {todoLists.map(todolist => {
+            <AppBar position="static">
+                <Toolbar>
+                    <IconButton
+                        size="large"
+                        edge="start"
+                        color="inherit"
+                        aria-label="menu"
+                        sx={{mr: 2}}
+                    >
+                        <Menu/>
+                    </IconButton>
+                    <Typography variant="h6" component="div" sx={{flexGrow: 1}}>
+                        News
+                    </Typography>
+                    <Button color="inherit">Login</Button>
+                </Toolbar>
+            </AppBar>
+            <Container fixed>
+                <AddItemForm addItem={addTodoList}/>
+                {todoLists.map(todolist => {
 
-                let taskForTodoList = tasksObj[todolist.id];
+                    let taskForTodoList = tasksObj[todolist.id];
 
-                if (todolist.filter === 'completed') {
-                    taskForTodoList = taskForTodoList.filter(t => t.isDone === true)
-                }
-                if (todolist.filter === 'active') {
-                    taskForTodoList = taskForTodoList.filter(t => t.isDone === false)
-                }
+                    if (todolist.filter === 'completed') {
+                        taskForTodoList = taskForTodoList.filter(t => t.isDone === true)
+                    }
+                    if (todolist.filter === 'active') {
+                        taskForTodoList = taskForTodoList.filter(t => t.isDone === false)
+                    }
 
-                return (
-                    <Todolist
-                        key={todolist.id}
-                        title={todolist.title}
-                        id={todolist.id}
-                        tasks={taskForTodoList}
-                        removedTodo={removedTodo}
-                        filterTodos={filterTodos}
-                        addItem={addItem}
-                        changeStatusHandler={changeStatusHandler}
-                        filter={todolist.filter}
-                        removeTodoList={removeTodoList}
-                        changeTitleHandler={changeTitleHandler}
-                        changeTodoListTitle={changeTodoListTitle}
-                    />
-                )
-            })}
+                    return (
+                        <Todolist
+                            key={todolist.id}
+                            title={todolist.title}
+                            id={todolist.id}
+                            tasks={taskForTodoList}
+                            removedTodo={removedTodo}
+                            filterTodos={filterTodos}
+                            addItem={addItem}
+                            changeStatusHandler={changeStatusHandler}
+                            filter={todolist.filter}
+                            removeTodoList={removeTodoList}
+                            changeTitleHandler={changeTitleHandler}
+                            changeTodoListTitle={changeTodoListTitle}
+                        />
+                    )
+                })}
+            </Container>
+
+
         </div>
     );
 }
