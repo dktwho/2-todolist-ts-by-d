@@ -38,10 +38,10 @@ export const AddItemForm = (props: AddItemFormPropsType) => {
                 value={value}
                 onChange={changeValue}
                 onKeyPress={onKeyPressHandler}
-                error={!!error}/>
-
+                error={!!error}
+                helperText={error}
+            />
             <Button variant={'outlined'} color={'success'} onClick={onClickAddTask}>+</Button>
-            {error && <div className='error-message'>{error}</div>}
         </div>
     )
 }
