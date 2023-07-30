@@ -82,7 +82,7 @@ export const Todolist = ({
 
 
                     return (
-                        <li key={el.id} className={el.isDone ? 'is-done' : ''}>
+                        <div key={el.id} className={el.isDone ? 'is-done' : ''}>
                             <Checkbox size="small"
                                 checked={el.isDone}
                                 onChange={onChangeStatus}
@@ -93,7 +93,7 @@ export const Todolist = ({
                             <IconButton onClick={onRemoveHandler} size="small">
                                 <Delete/>
                             </IconButton>
-                        </li>
+                        </div>
                     )
                 })}
             </ul>
