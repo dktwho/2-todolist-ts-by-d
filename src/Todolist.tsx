@@ -4,7 +4,7 @@ import {AddItemForm} from "./AddItemForm";
 import {EditableSpan} from "./EditableSpan";
 
 import {Delete} from "@mui/icons-material";
-import {IconButton} from "@mui/material";
+import {Button, IconButton} from "@mui/material";
 
 
 export type TasksType = {
@@ -94,12 +94,13 @@ export const Todolist = ({
                 })}
             </ul>
             <div>
-                <button className={filter === 'all' ? 'active-filter' : ''} onClick={AllClickHandler}>All</button>
-                <button className={filter === 'active' ? 'active-filter' : ''} onClick={ActiveClickHandler}>Active
-                </button>
-                <button className={filter === 'completed' ? 'active-filter' : ''}
+                <Button size="small" variant={filter === 'all' ? 'contained' : 'text'}
+                        onClick={AllClickHandler}>All</Button>
+                <Button size="small" variant={filter === 'active' ? 'contained' : 'text'} onClick={ActiveClickHandler}>Active
+                </Button>
+                <Button size="small" variant={filter === 'completed' ? 'contained' : 'text'}
                         onClick={CompletedClickHandler}>Completed
-                </button>
+                </Button>
             </div>
         </div>
     )
