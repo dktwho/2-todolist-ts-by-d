@@ -1,4 +1,4 @@
-import {todolistsReducer} from "./todolists-reducer";
+import {ChangeTodolistFilterType, todolistsReducer} from "./todolists-reducer";
 import {v4} from 'uuid';
 import {FilterValueType, TodoListType} from "../App";
 
@@ -18,6 +18,7 @@ test('correct todolist should be removed', () => {
 
 })
 
+
 test('add new todolist', () => {
     let todoListId1 = v4()
     let todoListId2 = v4()
@@ -34,6 +35,7 @@ test('add new todolist', () => {
     expect(endState[0].filter).toBe('all')
 })
 
+
 test('correct todolist should change his name', () => {
     let todoListId1 = v4()
     let todoListId2 = v4()
@@ -47,7 +49,7 @@ test('correct todolist should change his name', () => {
     ]
 
     const action = {
-        type: 'CHANGE-TODOLIST-TITLE',
+        type: 'CHANGE-TODOLIST-TITLE' as const,
         id: todoListId2,
         title: newTodolistTitle
     }
@@ -58,6 +60,7 @@ test('correct todolist should change his name', () => {
     expect(endState[0].title).toBe('What to learn')
 
 })
+
 
 test('correct filter of todolist should be changed', () => {
     let todoListId1 = v4()
@@ -71,7 +74,7 @@ test('correct filter of todolist should be changed', () => {
         {id: todoListId2, title: 'What to buy', filter: 'all'},
     ]
 
-    const action = {
+    const action: ChangeTodolistFilterType = {
         type: 'CHANGE-TODOLIST-FILTER',
         id: todoListId2,
         filter: newFilter

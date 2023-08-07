@@ -18,7 +18,7 @@ type ChangeTodolistTitleType = {
     title: string
 }
 
-type ChangeTodolistFilterType = {
+export type ChangeTodolistFilterType = {
     type: 'CHANGE-TODOLIST-FILTER'
     id: string
     filter: FilterValueType
