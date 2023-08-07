@@ -25,6 +25,13 @@ export const todolistsReducer = (state: TodoListType[], action: ActionType): Tod
             return [...state]
          }
 
+        case 'CHANGE-TODOLIST-FILTER': {
+            const todolist = state.find(tl => tl.id === action.id)
+            if (todolist) {
+                todolist.filter = action.filter
+            }
+            return [...state]
+        }
 
         default:
             throw new Error('bad action type')
