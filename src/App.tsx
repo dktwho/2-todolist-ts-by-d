@@ -161,15 +161,11 @@ function App() {
                                         changeTodoListTitle={changeTodoListTitle}
                                     />
                                 </Paper>
-
                             </Grid>
-
                         )
                     })}
                 </Grid>
             </Container>
-
-
         </div>
     );
 }
