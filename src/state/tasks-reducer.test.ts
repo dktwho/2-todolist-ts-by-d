@@ -2,9 +2,7 @@ import {v4} from 'uuid';
 import {addTaskAC, removeTaskAC, tasksReducer} from "./tasks-reducer";
 import {TasksStateType} from "../App";
 
-test('correct todolist should be removed', () => {
-
-
+test('correct task  should be removed', () => {
     const startState: TasksStateType = {
         'todoListId1': [
             {id: '1', title: 'HTML', isDone: false},
@@ -32,6 +30,9 @@ test('correct todolist should be removed', () => {
             {id: "3", title: "Watch movie", isDone: false}
         ]
     });
+    expect(endState['todoListId1'].length).toBe(3)
+    expect(endState['todoListId2'].length).toBe(2)
+    expect(endState['todoListId2'].every(t => t.id !== '2')).toBeTruthy()
 });
 
 
