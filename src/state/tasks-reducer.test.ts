@@ -50,8 +50,8 @@ test('add new task for changed todolist', () => {
         ]
     }
 
-    const value = 'Learn JavaScript'
-    const action = addTaskAC('todoListId2', value)
+
+    const action = addTaskAC('todoListId2', 'Learn JavaScript')
 
     const endState = tasksReducer(startState, action)
 
