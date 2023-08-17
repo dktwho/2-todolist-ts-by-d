@@ -102,16 +102,13 @@ test('change title for task', () => {
         ]
     }
 
-    const title = 'new-title'
-
-
-    const action = changeTaskTitleAC('todoListId2', '2', title)
+    const action = changeTaskTitleAC('todoListId2', '2', 'new-title')
 
     const endState = tasksReducer(startState, action)
 
     expect(endState["todoListId1"].length).toBe(3);
     expect(endState["todoListId2"].length).toBe(3);
-    expect(endState["todoListId2"][1].title).toBe(title);
+    expect(endState["todoListId2"][1].title).toBe('new-title');
     expect(endState["todoListId2"][1].isDone).toBe(true);
     expect(endState["todoListId1"][1].title).toBe('CSS');
 
