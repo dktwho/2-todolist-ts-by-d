@@ -2,17 +2,17 @@ import {FilterValueType, TodoListType} from "../App";
 import {v4} from "uuid";
 
 
-type RemoveTodolistType = {
+export type RemoveTodolistType = {
     type: 'REMOVE-TODOLIST'
     todoListId: string
 }
 
-type AddTodolistType = {
+export type AddTodolistType = {
     type: 'ADD-TODOLIST'
     title: string
 }
 
-type ChangeTodolistTitleType = {
+export type ChangeTodolistTitleType = {
     type: 'CHANGE-TODOLIST-TITLE'
     todoListId: string
     title: string
