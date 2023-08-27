@@ -12,7 +12,7 @@ import Typography from '@mui/material/Typography';
 import {Menu} from "@mui/icons-material";
 import IconButton from '@mui/material/IconButton';
 import {AddItemForm} from "./AddItemForm";
-import {changeTodolistFilterAC, todoListsReducer} from "./state/todolists-reducer";
+import {changeTodolistFilterAC, removeTodolistAC, todoListsReducer} from "./state/todolists-reducer";
 import {addTaskAC, changeTaskStatusAC, changeTaskTitleAC, removeTaskAC, tasksReducer} from "./state/tasks-reducer";
 import {TodolistWithUseReducer} from "./TodolistWithUseReducer";
 
@@ -74,10 +74,7 @@ function AppWithUseReducer() {
     }
 
     const removeTodoList = (todolistId: string) => {
-        // let filteredTodolist = todoLists.filter(tl => tl.id !== todolistId)
-        // setTodoLists(filteredTodolist)
-        // delete tasksObj[todolistId]
-        // setTasks({...tasksObj})
+        dispatchToTodolistsReducer(removeTodolistAC(todolistId))
     }
 
 
