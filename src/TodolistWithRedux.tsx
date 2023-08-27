@@ -29,18 +29,18 @@ export type  TitlePropsType = {
 
 }
 export const TodolistWithRedux = ({
-                                           title,
-                                           tasks,
-                                           removeTask,
-                                           filterTodos,
-                                           addItem,
-                                           changeStatusHandler,
-                                           filter,
-                                           id,
-                                           removeTodoList,
-                                           changeTitleHandler,
-                                           changeTodoListTitle
-                                       }: TitlePropsType) => {
+                                      title,
+                                      tasks,
+                                      removeTask,
+                                      filterTodos,
+                                      addItem,
+                                      changeStatusHandler,
+                                      filter,
+                                      id,
+                                      removeTodoList,
+                                      changeTitleHandler,
+                                      changeTodoListTitle
+                                  }: TitlePropsType) => {
 
     const addTask = (title: string) => {
         addItem(title, id)

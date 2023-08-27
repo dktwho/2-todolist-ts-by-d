@@ -1,7 +1,6 @@
-import React, {useReducer, useState} from 'react';
+import React from 'react';
 import './App.css';
 import {TasksType} from "./Todolist";
-import {v4} from 'uuid';
 import AppBar from '@mui/material/AppBar';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
@@ -16,14 +15,12 @@ import {
     addTodolistAC,
     changeTodolistFilterAC,
     changeTodolistTitleAC,
-    removeTodolistAC, todoListId2,
-    todoListsReducer
+    removeTodolistAC,
 } from "./state/todolists-reducer";
-import {addTaskAC, changeTaskStatusAC, changeTaskTitleAC, removeTaskAC, tasksReducer} from "./state/tasks-reducer";
+import {addTaskAC, changeTaskStatusAC, changeTaskTitleAC, removeTaskAC} from "./state/tasks-reducer";
 import {TodolistWithUseReducer} from "./TodolistWithUseReducer";
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "./state/store";
-
 
 
 export type FilterValueType = 'all' | 'active' | 'completed'
@@ -42,7 +39,7 @@ function AppWithRedux() {
 
     const dispatch = useDispatch()
     const todolists = useSelector<AppRootStateType, Array<TodoListType>>((state => state.todolists))
-    const tasks = useSelector<AppRootStateType, TasksStateType >((state => state.tasks))
+    const tasks = useSelector<AppRootStateType, TasksStateType>((state => state.tasks))
 
 
     const addItem = (value: string, todolistId: string) => {
@@ -54,7 +51,7 @@ function AppWithRedux() {
     }
 
     const changeStatusHandler = (taskId: string, isDone: boolean, todolistId: string) => {
-        dispatch(changeTaskStatusAC(todolistId,taskId, isDone))
+        dispatch(changeTaskStatusAC(todolistId, taskId, isDone))
     }
 
     const changeTitleHandler = (taskId: string, newTitle: string, todolistId: string) => {
@@ -109,10 +106,10 @@ function AppWithRedux() {
                         let taskForTodoList = tasks[todolist.id];
 
                         if (todolist.filter === 'completed') {
-                            taskForTodoList = taskForTodoList.filter(t => t.isDone === true)
+                            taskForTodoList = taskForTodoList.filter(t => t.isDone)
                         }
                         if (todolist.filter === 'active') {
-                            taskForTodoList = taskForTodoList.filter(t => t.isDone === false)
+                            taskForTodoList = taskForTodoList.filter(t => !t.isDone)
                         }
 
                         return (

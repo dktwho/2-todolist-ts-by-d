@@ -1,6 +1,6 @@
-import React, {useReducer, useState} from 'react';
+import React, {useReducer} from 'react';
 import './App.css';
-import {TasksType, Todolist} from "./Todolist";
+import {TasksType} from "./Todolist";
 import {v4} from 'uuid';
 import AppBar from '@mui/material/AppBar';
 import Button from '@mui/material/Button';
@@ -21,7 +21,6 @@ import {
 } from "./state/todolists-reducer";
 import {addTaskAC, changeTaskStatusAC, changeTaskTitleAC, removeTaskAC, tasksReducer} from "./state/tasks-reducer";
 import {TodolistWithUseReducer} from "./TodolistWithUseReducer";
-
 
 
 export type FilterValueType = 'all' | 'active' | 'completed'
@@ -68,7 +67,7 @@ function AppWithUseReducer() {
     }
 
     const changeStatusHandler = (taskId: string, isDone: boolean, todolistId: string) => {
-        dispatchToTasksReducer(changeTaskStatusAC(todolistId,taskId, isDone))
+        dispatchToTasksReducer(changeTaskStatusAC(todolistId, taskId, isDone))
     }
 
     const changeTitleHandler = (taskId: string, newTitle: string, todolistId: string) => {

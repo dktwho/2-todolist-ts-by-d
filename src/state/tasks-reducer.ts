@@ -38,7 +38,7 @@ type ActionsTypes =
     | AddTodolistType
     | RemoveTodolistType
 
-const initialState:TasksStateType  = {
+const initialState: TasksStateType = {
     [todoListId1]: [
         {id: v4(), title: 'HTML', isDone: true},
         {id: v4(), title: 'CSS', isDone: false},
