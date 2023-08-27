@@ -13,7 +13,7 @@ import {Menu} from "@mui/icons-material";
 import IconButton from '@mui/material/IconButton';
 import {AddItemForm} from "./AddItemForm";
 import {todoListsReducer} from "./state/todolists-reducer";
-import {addTaskAC, removeTaskAC, tasksReducer} from "./state/tasks-reducer";
+import {addTaskAC, changeTaskStatusAC, removeTaskAC, tasksReducer} from "./state/tasks-reducer";
 import {TodolistWithUseReducer} from "./TodolistWithUseReducer";
 
 //
@@ -62,12 +62,7 @@ function AppWithUseReducer() {
     }
 
     const changeStatusHandler = (taskId: string, isDone: boolean, todolistId: string) => {
-        // let tasks = tasksObj[todolistId]
-        // let task = tasks.find(t => t.id === taskId)
-        // if (task) {
-        //     task.isDone = isDone
-        // }
-        // setTasks({...tasksObj})
+        dispatchToTasksReducer(changeTaskStatusAC(todolistId,taskId, isDone))
     }
 
     const changeTitleHandler = (taskId: string, newTitle: string, todolistId: string) => {
