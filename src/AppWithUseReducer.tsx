@@ -90,6 +90,7 @@ function AppWithUseReducer() {
 
     const addTodoList = (title: string) => {
         dispatchToTodolistsReducer(addTodolistAC(title))
+        dispatchToTasksReducer(addTodolistAC(title))
     }
 
     return (
