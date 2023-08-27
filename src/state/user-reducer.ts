@@ -18,6 +18,6 @@ export const userReducer = (state: StateType, action: ActionType): StateType => 
         case 'CHANGE-NAME':
             return {...state, name: action.newName}
         default:
-            throw new Error('bad action type')
+            return state
     }
 }
