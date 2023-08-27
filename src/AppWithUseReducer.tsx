@@ -22,7 +22,7 @@ import {
 import {addTaskAC, changeTaskStatusAC, changeTaskTitleAC, removeTaskAC, tasksReducer} from "./state/tasks-reducer";
 import {TodolistWithUseReducer} from "./TodolistWithUseReducer";
 
-//
+
 
 export type FilterValueType = 'all' | 'active' | 'completed'
 
@@ -81,8 +81,8 @@ function AppWithUseReducer() {
 
     const removeTodoList = (todolistId: string) => {
         dispatchToTodolistsReducer(removeTodolistAC(todolistId))
+        dispatchToTasksReducer(removeTodolistAC(todolistId))
     }
-
 
     const changeTodoListTitle = (id: string, newTitle: string) => {
         dispatchToTodolistsReducer(changeTodolistTitleAC(newTitle, id))
@@ -91,7 +91,6 @@ function AppWithUseReducer() {
     const addTodoList = (title: string) => {
         dispatchToTodolistsReducer(addTodolistAC(title))
     }
-
 
     return (
         <div className="App">
