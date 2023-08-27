@@ -13,7 +13,7 @@ import {Menu} from "@mui/icons-material";
 import IconButton from '@mui/material/IconButton';
 import {AddItemForm} from "./AddItemForm";
 import {todoListsReducer} from "./state/todolists-reducer";
-import {removeTaskAC, tasksReducer} from "./state/tasks-reducer";
+import {addTaskAC, removeTaskAC, tasksReducer} from "./state/tasks-reducer";
 import {TodolistWithUseReducer} from "./TodolistWithUseReducer";
 
 //
@@ -54,11 +54,7 @@ function AppWithUseReducer() {
     })
 
     const addItem = (value: string, todolistId: string) => {
-        // let task = {id: v4(), title: value, isDone: false}
-        // let tasks = tasksObj[todolistId]
-        // let newTasks = [task, ...tasks]
-        // tasksObj[todolistId] = newTasks
-        // setTasks({...tasksObj})
+        dispatchToTasksReducer(addTaskAC(todolistId, value))
     }
 
     const removeTask = (taskId: string, todolistId: string) => {
