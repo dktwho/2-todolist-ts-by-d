@@ -45,7 +45,7 @@ export const TodolistWithRedux = React.memo(({
 
     const addTask = useCallback((title: string) => {
         addItem(title, id)
-    }, [])
+    }, [addItem, id])
 
     let taskForTodoList = tasks
     if (filter === 'completed') {
