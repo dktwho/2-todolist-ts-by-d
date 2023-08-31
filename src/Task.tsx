@@ -25,9 +25,9 @@ export const Task = React.memo(({
     const onChangeStatus = (e: ChangeEvent<HTMLInputElement>) => {
         changeStatusHandler(el.id, e.currentTarget.checked, todolistId)
     }
-    const onChangeTitle = useCallback( (newValue: string) => {
+    const onChangeTitle = useCallback((newValue: string) => {
         changeTitleHandler(el.id, newValue, todolistId)
-    }, [el.id,changeTitleHandler, todolistId ])
+    }, [el.id, changeTitleHandler, todolistId])
 
     return (
         <div key={el.id} className={el.isDone ? 'is-done' : ''}>
