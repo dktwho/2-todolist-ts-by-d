@@ -1,4 +1,4 @@
-import React, {ChangeEvent} from "react";
+import React, {ChangeEvent, useCallback} from "react";
 import {FilterValueType} from "./App";
 import {AddItemForm} from "./AddItemForm";
 import {EditableSpan} from "./EditableSpan";
@@ -44,9 +44,9 @@ export const TodolistWithRedux = ({
 
     console.log('TodolistWithRedux is called')
 
-    const addTask = (title: string) => {
+    const addTask = useCallback((title: string) => {
         addItem(title, id)
-    }
+    }, [])
 
     const AllClickHandler = () => filterTodos('all', id)
     const ActiveClickHandler = () => filterTodos('active', id)
