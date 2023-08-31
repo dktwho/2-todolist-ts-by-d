@@ -63,9 +63,10 @@ export const TodolistWithRedux = React.memo(({
         removeTodoList(id)
     }
 
-    const changeTodoListTitle2 = (newTitle: string) => {
+    const changeTodoListTitle2 = useCallback ((newTitle: string) => {
         changeTodoListTitle(id, newTitle)
-    }
+    }, [id, changeTodoListTitle ])
+
     return (
         <div>
             <h3>
@@ -84,11 +85,9 @@ export const TodolistWithRedux = React.memo(({
                     const onChangeStatus = (e: ChangeEvent<HTMLInputElement>) => {
                         changeStatusHandler(el.id, e.currentTarget.checked, id)
                     }
-
                     const onChangeTitle = (newValue: string) => {
                         changeTitleHandler(el.id, newValue, id)
                     }
-
 
                     return (
                         <div key={el.id} className={el.isDone ? 'is-done' : ''}>
