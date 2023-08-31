@@ -5,6 +5,7 @@ import {EditableSpan} from "./EditableSpan";
 
 import {Delete} from "@mui/icons-material";
 import {Button, Checkbox, IconButton} from "@mui/material";
+import {Task} from "./Task";
 
 
 export type TasksType = {
@@ -28,18 +29,18 @@ export type  TitlePropsType = {
     changeTodoListTitle: (todolistId: string, newTitle: string) => void
 }
 export const TodolistWithRedux = React.memo(({
-                                      title,
-                                      tasks,
-                                      removeTask,
-                                      filterTodos,
-                                      addItem,
-                                      changeStatusHandler,
-                                      filter,
-                                      id,
-                                      removeTodoList,
-                                      changeTitleHandler,
-                                      changeTodoListTitle
-                                  }: TitlePropsType) => {
+                                                 title,
+                                                 tasks,
+                                                 removeTask,
+                                                 filterTodos,
+                                                 addItem,
+                                                 changeStatusHandler,
+                                                 filter,
+                                                 id,
+                                                 removeTodoList,
+                                                 changeTitleHandler,
+                                                 changeTodoListTitle
+                                             }: TitlePropsType) => {
 
     console.log('TodolistWithRedux is called')
 
@@ -63,9 +64,9 @@ export const TodolistWithRedux = React.memo(({
         removeTodoList(id)
     }
 
-    const changeTodoListTitle2 = useCallback ((newTitle: string) => {
+    const changeTodoListTitle2 = useCallback((newTitle: string) => {
         changeTodoListTitle(id, newTitle)
-    }, [id, changeTodoListTitle ])
+    }, [id, changeTodoListTitle])
 
     return (
         <div>
@@ -78,29 +79,9 @@ export const TodolistWithRedux = React.memo(({
             <AddItemForm addItem={addTask}/>
             <ul>
                 {tasks.map(el => {
-                    const onRemoveHandler = () => {
-                        removeTask(el.id, id)
-                    }
-
-                    const onChangeStatus = (e: ChangeEvent<HTMLInputElement>) => {
-                        changeStatusHandler(el.id, e.currentTarget.checked, id)
-                    }
-                    const onChangeTitle = (newValue: string) => {
-                        changeTitleHandler(el.id, newValue, id)
-                    }
-
                     return (
-                        <div key={el.id} className={el.isDone ? 'is-done' : ''}>
-                            <Checkbox size="small"
-                                      checked={el.isDone}
-                                      onChange={onChangeStatus}
-                            />
-
-                            <EditableSpan title={el.title} onChange={onChangeTitle}/>
-                            <IconButton onClick={onRemoveHandler} size="small">
-                                <Delete/>
-                            </IconButton>
-                        </div>
+                        <Task key={el.id} removeTask={removeTask} changeTitleHandler={changeTitleHandler}
+                              changeStatusHandler={changeStatusHandler} el={el} todolistId={id}/>
                     )
                 })}
             </ul>
