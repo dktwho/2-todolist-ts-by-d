@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import './App.css';
 import {TasksType} from "./Todolist";
 import AppBar from '@mui/material/AppBar';
@@ -18,9 +18,9 @@ import {
     removeTodolistAC,
 } from "./state/todolists-reducer";
 import {addTaskAC, changeTaskStatusAC, changeTaskTitleAC, removeTaskAC} from "./state/tasks-reducer";
-import {TodolistWithUseReducer} from "./TodolistWithUseReducer";
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "./state/store";
+import {TodolistWithRedux} from "./TodolistWithRedux";
 
 
 export type FilterValueType = 'all' | 'active' | 'completed'
@@ -36,7 +36,7 @@ export type TasksStateType = {
 }
 
 function AppWithRedux() {
-
+    console.log('AppWithRedux is called')
     const dispatch = useDispatch()
     const todolists = useSelector<AppRootStateType, Array<TodoListType>>((state => state.todolists))
     const tasks = useSelector<AppRootStateType, TasksStateType>((state => state.tasks))
@@ -71,10 +71,10 @@ function AppWithRedux() {
         dispatch(changeTodolistTitleAC(newTitle, id))
     }
 
-    const addTodoList = (title: string) => {
+    const addTodoList = useCallback((title: string) => {
         const action = addTodolistAC(title)
         dispatch(action)
-    }
+    }, [])
 
     return (
         <div className="App">
@@ -115,7 +115,7 @@ function AppWithRedux() {
                         return (
                             <Grid key={todolist.id}>
                                 <Paper style={{padding: '10px'}}>
-                                    <TodolistWithUseReducer
+                                    <TodolistWithRedux
                                         key={todolist.id}
                                         title={todolist.title}
                                         id={todolist.id}

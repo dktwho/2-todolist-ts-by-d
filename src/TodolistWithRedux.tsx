@@ -42,6 +42,8 @@ export const TodolistWithRedux = ({
                                       changeTodoListTitle
                                   }: TitlePropsType) => {
 
+    console.log('TodolistWithRedux is called')
+
     const addTask = (title: string) => {
         addItem(title, id)
     }
@@ -87,7 +89,6 @@ export const TodolistWithRedux = ({
                                       onChange={onChangeStatus}
                             />
 
-                            {/*<span>{el.title}</span>*/}
                             <EditableSpan title={el.title} onChange={onChangeTitle}/>
                             <IconButton onClick={onRemoveHandler} size="small">
                                 <Delete/>
