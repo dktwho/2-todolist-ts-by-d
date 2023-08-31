@@ -26,9 +26,8 @@ export type  TitlePropsType = {
     filter: FilterValueType
     removeTodoList: (todolistId: string) => void
     changeTodoListTitle: (todolistId: string, newTitle: string) => void
-
 }
-export const TodolistWithRedux = ({
+export const TodolistWithRedux = React.memo(({
                                       title,
                                       tasks,
                                       removeTask,
@@ -108,5 +107,5 @@ export const TodolistWithRedux = ({
             </div>
         </div>
     )
-}
+})
 
