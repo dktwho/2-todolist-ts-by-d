@@ -55,9 +55,10 @@ export const TodolistWithRedux = React.memo(({
         taskForTodoList = tasks.filter(t => !t.isDone)
     }
 
-    const AllClickHandler = () => filterTodos('all', id)
-    const ActiveClickHandler = () => filterTodos('active', id)
-    const CompletedClickHandler = () => filterTodos('completed', id)
+    const AllClickHandler = useCallback(() => filterTodos('all', id), [filterTodos, id])
+    const ActiveClickHandler = useCallback(() => filterTodos('active', id), [filterTodos, id])
+    const CompletedClickHandler = useCallback(() => filterTodos('completed', id), [filterTodos, id])
+
     const removeTodoListHandler = () => {
         removeTodoList(id)
     }
