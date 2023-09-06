@@ -1,3 +1,3 @@
-const {toMatchImageSnapShot} = require('jest-image-snapshot')
 
-expect.extend({toMatchImageSnapShot})
+const { toMatchImageSnapshot } = require('jest-image-snapshot');
+expect.extend({ toMatchImageSnapshot });
