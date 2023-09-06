@@ -42,7 +42,6 @@ export const TodolistWithRedux = React.memo(({
                                                  changeTodoListTitle
                                              }: TitlePropsType) => {
 
-    console.log('TodolistWithRedux is called')
 
     const addTask = useCallback((title: string) => {
         addItem(title, id)
